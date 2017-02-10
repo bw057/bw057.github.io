@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Check-in e-mail deeplink test form</title>
+    <style media="screen">
+    html {
+      font-family: sans-serif;
+      font-kerning:
+    }
+    * {
+      box-sizing: border-box;
+    }
+    label {
+      display: inline-block;
+      min-width: 9em;
+      border: 1em;
+      color: darkgrey;
+    }
+    .formline {
+      display: block;
+      margin: 1em;
+    }
+    select {
+      background: transparent;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    input[type=text], select {
+      font: inherit;
+      width: 21em;
+      border-top: 0px solid transparent;
+      border-right: 0px solid transparent;
+      border-left: 0px solid transparent;
+      border-bottom: 1px solid grey;
+    }
+    input[type=text] {
+      margin-left: 5px;
+    }
+    .btn {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(40, 40, 40, 1);
+      border-color: rgba(255, 255, 255, 0.2);
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 0;
+    }
+    .btn + .btn {
+      margin-left: 1rem;
+    }
+    .btn:hover {
+      color: rgba(255, 255, 255, 1);
+      text-decoration: none;
+      background-color: rgba(80, 80, 80, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media screen and (min-width: 42em) {
+      .btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.9rem;
+       }
+    }
+
+    @media screen and (max-width: 42em) {
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+      .btn + .btn {
+        margin-top: 1rem;
+        margin-left: 0;
+      }
+    }
+    @media screen and (max-width: 36em) {
+      input[type=text] {
+        margin-left: 0;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Check-in e-mail deeplink test form</h1>
+	  <div class="formline">
+        <label for="language">Language</label><input type="text" name="language" id="language" value="">
+      </div>
+    <form id="daform" action="https://beta-ute.airfrance.com/en/check-in" method="get">
+      <div class="formline">
+        <label for="environment">Environment</label>
+        <select id="environment">
+          <option value="https://b2c-evol7rct1-rct.airfrance.fr/ams/aviato/{{language}}/check-in">AF UTE: evol7rct1.airfrance.com/check-in</option>
+          <option value="https://b2c-evol3rct3-rct.airfrance.fr/ams/aviato/{{language}}/check-in">AF PDT: evol3rct3.airfrance.com/check-in</option>
+          <option value="https://www.ute1.klm.com/ams/aviato/{{language}}/check-in">KL UTE: ute1.klm.com/ams/aviato/</option>
+          <option value="https://www.ute3.klm.com/ams/aviato/{{language}}/check-in">KL PDT: ute3.klm.com/ams/aviato/</option>
+          <option value="https://beta-ite.airfrance.com/{{language}}/check-in">(defunct a.t.m.) AF ITE: beta-ite.airfrance.com/check-in</option>
+          <option value="https://beta-ae.airfrance.com/{{language}}/check-in">(defunct a.t.m.) AF AE: beta-ae.airfrance.com/check-in</option>
+          <option value="https://beta-ite.klm.com/{{language}}/check-in">(defunct a.t.m.) KL ITE: beta-ite.klm.com/check-in</option>
+          <option value="https://beta-ae.klm.com/{{language}}/check-in">(defunct a.t.m.) KL AE: beta-ae.klm.com/check-in</option>
+          <option value="http://klm.localhost:3000/{{language}}/check-in">localhost KL: klm.localhost:3000/check-in</option>
+          <option value="http://airfrance.localhost:3000/{{language}}/check-in">localhost AF: airfrance.localhost:3000/check-in</option>
+          <option value="http://localhost:3000/{{language}}/check-in">localhost neutral: localhost:3000/check-in</option>
+        </select>
+      </div>
+      <div class="formline">
+        <label for="ticketnumber">Ticket number</label><input type="text" name="ticketnumber" id="ticketnumber" value="">
+      </div>
+      <div class="formline">
+        <label for="flightnumber">Flight number</label><input type="text" name="flightnumber" id="flightnumber" value="">
+      </div>
+      <div class="formline">
+        <label for="departurestation">Departure station</label><input type="text" name="departurestation" id="departurestation" value="AMS">
+      </div>
+      <div class="formline" style="text-align: center;">
+        <input class="btn" type="submit" value="Check me in">
+      </div>
+    </form>
+
+    <script type="text/javascript">
+    var FORM_FIELDS = [
+      "language",
+      "environment",
+      "ticketnumber",
+      "flightnumber",
+      "departurestation"
+    ];
+
+    function saveTheForm(){
+      if (typeof localStorage !== 'undefined'){
+        FORM_FIELDS.forEach(function(pFormField){
+          localStorage.setItem(pFormField, window[pFormField].value);
+        });
+      }
+    }
+
+    function fillTheForm(){
+      FORM_FIELDS.forEach(function(pFormField){
+        if (localStorage.getItem(pFormField)){
+          window[pFormField].value = localStorage.getItem(pFormField);
+        }
+      });
+    }
+
+    function addFormChangeListeners(){
+      FORM_FIELDS.forEach(function(pFormField){
+        window[pFormField].addEventListener("change", saveTheForm, false);
+      });
+    }
+
+    function setActionToEnvironment(pEvent){
+        window.daform.action = pEvent.target.value.replace("{{language}}", window.language ? window.language.value : "fr" );
+    }
+	  
+	  function setActionToLanguage(pEvent){
+          window.daform.action = window.environment.value.replace("{{language}}", pEvent.target.value );
+      }
+	  
+	  function normalizeTicketNumber(pTicketNumber){
+	      return pTicketNumber.replace(/[^0-9]/g, "");
+	  }
+	  
+	  function setTicketNumberToNormalized(pEvent){
+        window.ticketnumber.value = normalizeTicketNumber(pEvent.target.value);
+	  }
+
+    function main(){
+      fillTheForm();
+      addFormChangeListeners();
+      window.daform.action = window.environment.value.replace("{{language}}", window.language ? window.language.value : "fr" );
+
+      window.environment.addEventListener("change", setActionToEnvironment, false);
+      window.language.addEventListener("change", setActionToLanguage, false);
+      window.ticketnumber.addEventListener("change", setTicketNumberToNormalized, false)
+    }
+    main();
+    </script>
+  </body>
+</html>
