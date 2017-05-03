@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>demo time</title>
+    <title>灰色飛行員</title>
     <style media="screen">
     html {
       font-family: sans-serif;
@@ -87,7 +87,7 @@
     </style>
   </head>
   <body>
-    <h1>Demo time</h1>
+    <h1>L'aviateur gris</h1>
 	  <div class="formline">
         <label for="language">Language</label><input type="text" name="language" id="language" value="">
       </div>
@@ -164,7 +164,7 @@
     }
 
     function setActionToEnvironment(pEvent){
-        window.daform.action = pEvent.target.value.replace("{{language}}", window.language ? window.language.value : "fr" );
+        window.daform.action = pEvent.target.value.replace("{{language}}", document.getElementById('language') ? document.getElementById('language').value : "fr" );
     }
 	  
     function setActionToLanguage(pEvent){
