@@ -144,7 +144,7 @@
     function saveTheForm(){
       if (typeof localStorage !== 'undefined'){
         FORM_FIELDS.forEach(function(pFormField){
-          localStorage.setItem(pFormField, window[pFormField].value);
+          localStorage.setItem(pFormField, document.getElementById(pFormField).value);
         });
       }
     }
