@@ -166,11 +166,11 @@
     function setActionToEnvironment(pEvent){
         window.daform.action = pEvent.target.value.replace("{{language}}", document.getElementById('language') ? document.getElementById('language').value : "fr" );
     }
-	  
+
     function setActionToLanguage(pEvent){
         window.daform.action = document.getElementById('environment').value.replace("{{language}}", pEvent.target.value );
     }
-	  
+
     function normalizeTicketNumber(pTicketNumber){
         return pTicketNumber.replace(/[^0-9]/g, "");
     }
@@ -180,13 +180,17 @@
     }
 
     function main(){
+      var lLanguageElement = document.getElementById('language');
+      var lEnvironmentElement = document.getElementById('environment');
+      var lTicketnumberElement = document.getElementById('ticketnumber');
+
       fillTheForm();
       addFormChangeListeners();
-      window.daform.action = document.getElementById('environment').value.replace("{{language}}", document.getElementById('environment') ? document.getElementById('environment').value : "fr" );
+      window.daform.action = lEnvironmentElement.value.replace("{{language}}",  lLanguageElement ? lLanguageElement.value : "fr" );
 
-      document.getElementById('environment').addEventListener("change", setActionToEnvironment, false);
-      document.getElementById('language').addEventListener("change", setActionToLanguage, false);
-      document.getElementById('ticketnumber').addEventListener("change", setTicketNumberToNormalized, false)
+      lEnvironmentElement.addEventListener("change", setActionToEnvironment, false);
+      lLanguageElement.addEventListener("change", setActionToLanguage, false);
+      lTicketnumberElement.addEventListener("change", setTicketNumberToNormalized, false)
     }
     main();
     </script>
