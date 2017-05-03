@@ -152,14 +152,14 @@
     function fillTheForm(){
       FORM_FIELDS.forEach(function(pFormField){
         if (localStorage.getItem(pFormField)){
-          window[pFormField].value = localStorage.getItem(pFormField);
+          document.getElementById(pFormField).value = localStorage.getItem(pFormField);
         }
       });
     }
 
     function addFormChangeListeners(){
       FORM_FIELDS.forEach(function(pFormField){
-        window[pFormField].addEventListener("change", saveTheForm, false);
+        document.getElementById(pFormField).addEventListener("change", saveTheForm, false);
       });
     }
 
