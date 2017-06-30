@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>灰色飛行員</title>
+    <title>Einsteigen!</title>
     <style media="screen">
     html {
       font-family: sans-serif;
@@ -87,7 +87,7 @@
     </style>
   </head>
   <body>
-    <h1>Stap in!</h1>
+    <h1>Voy camino!</h1>
 	  <div class="formline">
         <label for="language">Language</label>
 	<select id="language">
@@ -101,32 +101,36 @@
       <div class="formline">
         <label for="environment">Environment</label>
         <select id="environment">
-	  <option value="https://b2c-evol7rct1-rct.airfrance.fr/ams/aviato/{{language}}/check-in">Demo AF branded</option>
-          <option value="https://www.ute1.klm.com/ams/aviato/{{language}}/check-in">Demo KL branded</option>
-          <option value="https://b2c-evol7rct1-rct.airfrance.fr/ams/aviato/{{language}}/check-in">AF UTE landing: evol7rct1</option>
-	  <option value="https://b2c-evol7rct1-rct.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF UTE direct: evol7rct1</option>
-          <option value="https://b2c-evol3rct3-rct.airfrance.fr/ams/aviato/{{language}}/check-in">AF PDT landing: evol3rct3</option>
-	  <option value="https://b2c-evol3rct3-rct.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF PDT direct: evol3rct3</option>
-	  <option value="https://www.airfrance.fr/ams/aviato/{{language}}/check-in">AF landing</option>
-	  <option value="https://www.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF direct</option>
-          <option value="https://www.ute1.klm.com/ams/aviato/{{language}}/check-in">KL UAT landing: ute1</option>
-          <option value="https://www.ute1.klm.com/ams/aviato/{{language}}/check-in-new">KL UAT direct: ute1</option>
-	  <option value="https://www.ute3.klm.com/ams/aviato/{{language}}/check-in">KL PDT landing: ute3</option>
-          <option value="https://www.ute3.klm.com/ams/aviato/{{language}}/check-in-new">KL PDT direct: ute3</option>
-	  <option value="https://www.ite2.klm.com/ams/aviato/{{language}}/check-in">ite2</option>
-          <option value="https://www.ite2.klm.com/ams/aviato/{{language}}/check-in-new">ite2 direct</option>
-          <option value="https://www.ite1.klm.com/ams/aviato/{{language}}/check-in">KL UAT landing: ite1</option>
-          <option value="https://www.ite1.klm.com/ams/aviato/{{language}}/check-in-new">KL UAT direct: ite1</option>
-          <option value="https://www.klm.com/ams/aviato/{{language}}/check-in">KL landing</option>
-          <option value="https://www.klm.com/ams/aviato/{{language}}/check-in-new">KL direct</option>
-          <option value="https://beta-ite.airfrance.com/{{language}}/check-in">(defunct a.t.m.) AF ITE: beta-ite</option>
-          <option value="https://beta-ae.airfrance.com/{{language}}/check-in">(defunct a.t.m.) AF AE: beta-ae</option>
-          <option value="https://beta-ite.klm.com/{{language}}/check-in">(defunct a.t.m.) KL ITE: beta-ite</option>
-          <option value="https://beta-ae.klm.com/{{language}}/check-in">(defunct a.t.m.) KL AE: beta-ae</option>
-          <option value="http://klm.localhost:3000/ams/aviato/{{language}}/check-in">localhost KL: klm.localhost:3000</option>
-          <option value="http://airfrance.localhost:3000/ams/aviato/{{language}}/check-in">localhost AF: airfrance.localhost:3000</option>
-          <option value="http://localhost:3000/ams/aviato/{{language}}/check-in">localhost neutral: localhost:3000</option>
-        </select>
+	  <optgroup label="landing page">
+              <option value="https://www-ite1.airfrance.fr/ams/aviato/{{language}}/check-in">AF UAT: ite1</option>
+	      <option value="https://www-ite2.airfrance.fr/ams/aviato/{{language}}/check-in">AF PDT: ite2</option>
+	      <option value="https://www-ute1.airfrance.fr/ams/aviato/{{language}}/check-in">AF UAT: ute1</option>
+	      <option value="https://www-ute3.airfrance.fr/ams/aviato/{{language}}/check-in">AF PDT: ute3</option>	  
+	      <option value="https://www-ite1.klm.nl/ams/aviato/{{language}}/check-in">KL UAT landing: ite1</option>
+	      <option value="https://www-ite2.klm.com/ams/aviato/{{language}}/check-in">KL PDT landing:ite2</option>
+              <option value="https://www-ute1.klm.com/ams/aviato/{{language}}/check-in">KL UAT landing: ute1</option>
+              <option value="https://www-ute3.klm.com/ams/aviato/{{language}}/check-in">KL PDT landing: ute3</option>
+              <option value="https://www.airfrance.fr/ams/aviato/{{language}}/check-in">AF landing</option>
+              <option value="https://www.klm.com/ams/aviato/{{language}}/check-in">KL landing</option>
+	  </optgroup>
+	  <optgroup label="directly to check-in">
+	      <option value="https://www-ite1.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF UAT: ite1</option>
+	      <option value="https://www-ite2.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF PDT: ite2</option>
+	      <option value="https://www-ute1.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF UAT: ute1</option>
+	      <option value="https://www-ute3.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF PDT: ute3</option>
+              <option value="https://www-ite1.klm.nl/ams/aviato/{{language}}/check-in-new">KL UAT direct: ite1</option>  
+              <option value="https://www-ite2.klm.com/ams/aviato/{{language}}/check-in-new">ite2 direct</option>          
+              <option value="https://www-ute1.klm.com/ams/aviato/{{language}}/check-in-new">KL UAT direct: ute1</option>	  
+              <option value="https://www-ute3.klm.com/ams/aviato/{{language}}/check-in-new">KL PDT direct: ute3</option>
+	      <option value="https://www.airfrance.fr/ams/aviato/{{language}}/check-in-new">AF direct</option>
+	  </optgroup>
+     	 <optgroup label="localhost things">
+	     <option value="https://www.klm.com/ams/aviato/{{language}}/check-in-new">KL direct</option>
+              <option value="http://klm.localhost:3000/ams/aviato/{{language}}/check-in">localhost KL: klm.localhost:3000</option>
+              <option value="http://airfrance.localhost:3000/ams/aviato/{{language}}/check-in">localhost AF: airfrance.localhost:3000</option>
+              <option value="http://localhost:3000/ams/aviato/{{language}}/check-in">localhost neutral: localhost:3000</option>
+	</optgroup>
+      </select>
       </div>
       <div class="formline">
         <label for="ticketnumber">Ticket number</label><input type="text" name="ticketnumber" id="ticketnumber" value="">
