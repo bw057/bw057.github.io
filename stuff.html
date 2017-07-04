@@ -102,10 +102,10 @@
         <label for="environment">Environment</label>
         <select id="environment">
 	  <optgroup label="landing page">
-              <option value="aHR0cHM6Ly93d3ctaXRlMS5haXJmcmFuY2UuZnIvYW1zL2F2aWF0by97e2xhbmd1YWdlfX0vY2hlY2staW4=">ite1 AF UAT (landing page)</option>
-	      <option value="aHR0cHM6Ly93d3ctaXRlMi5haXJmcmFuY2UuZnIvYW1zL2F2aWF0by97e2xhbmd1YWdlfX0vY2hlY2staW4=">ite2 AF PDT (landing page)</option>
-	      <option value="aHR0cHM6Ly93d3ctdXRlMS5haXJmcmFuY2UuZnIvYW1zL2F2aWF0by97e2xhbmd1YWdlfX0vY2hlY2staW4=">ute1 AF UAT (landing page)</option>
-	      <option value="aHR0cHM6Ly93d3ctdXRlMy5haXJmcmFuY2UuZnIvYW1zL2F2aWF0by97e2xhbmd1YWdlfX0vY2hlY2staW4=">ute3 AF PDT (landing page)</option>	  
+              <option value="https://www-ite1.airfrance.fr/ams/aviato/{{language}}/check-in">ite1 AF UAT (landing page)</option>
+	      <option value="https://www-ite2.airfrance.fr/ams/aviato/{{language}}/check-in">ite2 AF PDT (landing page)</option>
+	      <option value="https://www-ute1.airfrance.fr/ams/aviato/{{language}}/check-in">ute1 AF UAT (landing page)</option>
+	      <option value="https://www-ute3.airfrance.fr/ams/aviato/{{language}}/check-in">ute3 AF PDT (landing page)</option>	  
 	      <option value="https://www-ite1.klm.nl/ams/aviato/{{language}}/check-in">ite1 KL UAT (landing page)</option>
 	      <option value="https://www-ite2.klm.nl/ams/aviato/{{language}}/check-in">ite2 KL PDT (landing page)</option>
               <option value="https://www-ute1.klm.nl/ams/aviato/{{language}}/check-in">ute1 KL UAT (landing page)</option>
@@ -182,7 +182,7 @@
     }
 
     function setActionToLanguage(pEvent){
-        window.daform.action = atob(document.getElementById('environment').value).replace("{{language}}", pEvent.target.value );
+        window.daform.action = document.getElementById('environment').value.replace("{{language}}", pEvent.target.value );
     }
 
     function normalizeTicketNumber(pTicketNumber){
