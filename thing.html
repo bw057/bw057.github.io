@@ -133,7 +133,7 @@
                 </div>
                 <div class="formline">
                 <a id="link" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la</a>
-                <a id="link" target="nvlfntre" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la (nouvelle fenêtre)</a>
+                <a id="linkwindow" target="nvlfntre" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la (nouvelle fenêtre)</a>
                 </div>
             </fieldset>
             <fieldset aria-label="settings">
@@ -243,6 +243,7 @@
 
 		function showModel(){
 			document.getElementById('link').setAttribute("href", buildSearchQuery(gModel));
+      document.getElementById('linkwindow').setAttribute("href", buildSearchQuery(gModel));
 			document.getElementById('departure').setAttribute("value", gModel.departure);
 			document.getElementById('arrival').setAttribute("value", gModel.arrival);
 			document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
