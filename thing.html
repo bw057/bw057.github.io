@@ -131,9 +131,12 @@
                 <label data-label="infantCount" class="tr" for="infantCount">Bébés</label>
                 <input type="number" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
                 </div>
+
                 <div class="formline">
+                  <input type="checkbox" id="newWindow">
+                  <label data-label="newWindow" class="tr" for="newWindow">Fenêtre nouvelle</label>
+                </div>
                 <a id="link" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la</a>
-                <a id="linkwindow" target="nvlfntre" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la (nouvelle fenêtre)</a>
                 </div>
             </fieldset>
             <fieldset aria-label="settings">
@@ -146,6 +149,7 @@
                     <option value="en">English</option>
                     <option value="fr">Français</option>
                     <option value="nl">Nederlands</option>
+                    <option value="fi">Suomalainen</option>
                   </select>
                 </div>
                 <div class="formline">
@@ -186,32 +190,41 @@
         </form>
     <script>
 
-		function buildSearchQuery(pParams) {
-			return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival + ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure + ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 + "&activeConnection=0";
-		}
+    function buildSearchQuery(pParams) {
+      return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival + ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure + ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 + "&activeConnection=0";
+    }
+
+    function getTargetWindow(pModel) {
+      return pModel.newWindow ? "nvlfntre" : "";
+    }
 
     function setBrand(pBrand) {
       document.body.setAttribute("class", "brand-" + pBrand);
     }
 
-		var gModel = {
-			environment: 'www-ute3',
-			brand: 'airfrance',
-			CCTLD: 'fr',
-			language: 'en',
-			departure: 'ATH',
-			arrival: 'CDG',
-			departureDate: '20180924',
-			returnDate: '20181006',
-			adultCount: 1,
-			childCount: 0,
-			infantCount: 0
-		};
+    function setNewWindow(pNewWindowAsString) {
+      console.log(pNewWindowAsString)
+    }
+
+    var gModel = {
+      environment: 'www-ute3',
+      brand: 'airfrance',
+      CCTLD: 'fr',
+      language: 'en',
+      departure: 'ATH',
+      arrival: 'CDG',
+      departureDate: '20180924',
+      returnDate: '20181006',
+      adultCount: 1,
+      childCount: 0,
+      infantCount: 0,
+      newWindow: false
+    };
     var LOCALSTORAGE_KEY = 'thing';
 
-		console.log(
-			buildSearchQuery(gModel)
-		);
+    console.log(
+      buildSearchQuery(gModel)
+    );
 
     function persistState(pKey, pState){
       if (typeof localStorage !== 'undefined'){
@@ -236,39 +249,41 @@
       pEvent.target.value = pEvent.target.value.toUpperCase();
     }
 
-		function updateViewModel(pEvent) {
-			gModel[pEvent.target.id] = pEvent.target.value;
+    function updateViewModel(pEvent) {
+      gModel[pEvent.target.id] = pEvent.target.type === "checkbox" ? pEvent.target.checked : pEvent.target.value;
       persistState(LOCALSTORAGE_KEY, gModel);
-			showModel();
-		}
+      showModel();
+    }
 
-		function showModel(){
-			document.getElementById('link').setAttribute("href", buildSearchQuery(gModel));
-      document.getElementById('linkwindow').setAttribute("href", buildSearchQuery(gModel));
-			document.getElementById('departure').setAttribute("value", gModel.departure);
-			document.getElementById('arrival').setAttribute("value", gModel.arrival);
-			document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
-			document.getElementById('returnDate').setAttribute("value", gModel.returnDate);
+    function showModel(){
+      document.getElementById('link').setAttribute("href", buildSearchQuery(gModel));
+      document.getElementById('link').setAttribute("target", getTargetWindow(gModel));
+      document.getElementById('departure').setAttribute("value", gModel.departure);
+      document.getElementById('arrival').setAttribute("value", gModel.arrival);
+      document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
+      document.getElementById('returnDate').setAttribute("value", gModel.returnDate);
       document.getElementById('adultCount').setAttribute("value", gModel.adultCount);
       document.getElementById('childCount').setAttribute("value", gModel.childCount);
       document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
+      document.getElementById('newWindow').checked = gModel.newWindow;
       document.getElementById('environment').setAttribute("value", gModel.environment);
       document.getElementById('brand').setAttribute("value", gModel.brand);
       document.getElementById('CCTLD').setAttribute("value", gModel.CCTLD);
       document.getElementById('language').setAttribute("value", gModel.language);
       setBrand(gModel.brand);
-			console.log(gModel);
-		}
-				
+      console.table ? console.table(gModel): console.log(gModel);
+    }
+        
     document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
     document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
     document.getElementById('departure').addEventListener("change", updateViewModel, false);
     document.getElementById('arrival').addEventListener("change", updateViewModel, false);
     document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
-		document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
+    document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
     document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
     document.getElementById('childCount').addEventListener("change", updateViewModel, false);
     document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
+    document.getElementById('newWindow').addEventListener("change", updateViewModel, false);
     document.getElementById('environment').addEventListener("change", updateViewModel, false);
     document.getElementById('brand').addEventListener("change", updateViewModel, false);
     document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
@@ -276,7 +291,7 @@
 
     gModel = getState(LOCALSTORAGE_KEY, gModel);
 
-		showModel();
+    showModel();
 
     </script>
 </body>
