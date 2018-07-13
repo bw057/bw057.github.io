@@ -1,105 +1,105 @@
 <!DOCTYPE html>
-<head>
-        <meta charset="utf-8">
-        <meta name="robots" content="noindex">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#051039">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="#051039">
-        <meta name="apple-mobile-web-app-title" content="Einsteigen">
-        <link rel="shortcut icon" href="./icon.png">
-        <link rel="manifest" href="manifest.json">
-        <title>Hello search</title>
-        <style media="screen">
-        html {
-          font-family: sans-serif
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#051039">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#051039">
+    <meta name="apple-mobile-web-app-title" content="Einsteigen">
+    <link rel="shortcut icon" href="./icon.png">
+    <link rel="manifest" href="manifest.json">
+    <title>Hello search</title>
+    <style media="screen">
+    html {
+      font-family: sans-serif
+    }
+    * {
+      box-sizing: border-box;
+      transition: all ease .3s
+    }
+    label {
+      display: inline-block;
+      min-width: 10em;
+      border: 1em;
+      color: #737373
+    }
+    .formline {
+      display: block;
+      margin: 1em
+    }
+    input[type=text], input[type=tel], select {
+      background: transparent;
+      font: inherit;
+      width: 15rem;
+      border: 0px solid transparent;
+      border-bottom: 1px solid grey
+    }
+    .btn {
+      display: inline-block;
+      text-align:center;
+      margin-bottom: 1rem;
+      margin-left: 17.5rem;
+      color: rgba(255, 255, 255, 1);
+      border-style: solid;
+      border-width: 0;
+      font: inherit;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px grey;
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s
+    }
+    .btn:hover, .btn:active { box-shadow: none }
+    fieldset {
+      background-color: #FAFAFA;
+      border: none;
+      margin-bottom: 2rem
+    }
+    @media screen and (min-width: 42em) {
+      .btn {
+      padding: 0.6rem 0.9rem;
         }
-        * {
-          box-sizing: border-box;
-          transition: all ease .3s
-        }
-        label {
-          display: inline-block;
-          min-width: 10em;
-          border: 1em;
-          color: #737373
-        }
-        .formline {
-          display: block;
-          margin: 1em
-        }
-        input[type=text], input[type=tel], select {
-          background: transparent;
-          font: inherit;
-          width: 15rem;
-          border: 0px solid transparent;
-          border-bottom: 1px solid grey
-        }
-        .btn {
-          display: inline-block;
-          margin-bottom: 1rem;
-          margin-left: 17.5rem;
-          color: rgba(255, 255, 255, 1);
-          border-style: solid;
-          border-width: 0;
-          font: inherit;
-          font-weight: bold;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px grey;
-          transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-          -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s
-
-        }
-        .btn:hover, .btn:active { box-shadow: none }
-        fieldset {
-          background-color: #FAFAFA;
-          border: none;
-          margin-bottom: 2rem
-        }
-        @media screen and (min-width: 42em) {
-          .btn {
-          padding: 0.6rem 0.9rem;
-           }
-        }
-        @media screen and (max-width: 42em) {
-          .btn {
-            display: block;
-            margin-left: inherit;
-            width: 100%;
-            padding: 0.75rem
-          }
-        }
-        @media screen and (max-width: 36em) {
-          input[type=text] {
-            margin-left: 0
-          }
-        }
-        .brand-airfrance {
-          color: #051039;
-          font-variant: small-caps
-        }
-        .brand-airfrance .btn {
-          background-color: #ed0000
-        }
-        .brand-airfrance input[type=text], input[type=tel], select {
-          font-variant: normal
-        }
-        .brand-klm {
-          color: #51c3ee;
-          font-variant: normal;
-        }
-        .brand-klm h1 {
-          font-weight: 400;
-        }
-        .brand-klm .btn {
-          background-color: #e37222;
-          border-radius: 2rem
-        }
-        </style>
-        </head>
-      <body class="brand-airfrance">
+    }
+    @media screen and (max-width: 42em) {
+      .btn {
+        display: block;
+        margin-left: inherit;
+        width: 100%;
+        padding: 0.75rem
+      }
+    }
+    @media screen and (max-width: 36em) {
+      input[type=text] {
+        margin-left: 0
+      }
+    }
+    .brand-airfrance {
+      color: #051039;
+      font-variant: small-caps
+    }
+    .brand-airfrance .btn {
+      background-color: #ed0000
+    }
+    .brand-airfrance input[type=text], input[type=tel], select {
+      font-variant: normal
+    }
+    .brand-klm {
+      color: #51c3ee;
+      font-variant: normal;
+    }
+    .brand-klm h1 {
+      font-weight: 400;
+    }
+    .brand-klm .btn {
+      background-color: #e37222;
+      border-radius: 2rem
+    }
+    </style>
+  </head>
+  <body class="brand-airfrance">
       <h1 class="tr" data-label="title">Bonjour recherche</h1>
-    <body>
         <form action="about:blank" method="get">
             <fieldset aria-label="parameters">
                 <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
