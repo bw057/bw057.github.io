@@ -151,6 +151,9 @@ leave empty if you want a single flight">
                     <option value="fr">Français</option>
                     <option value="nl">Nederlands</option>
                     <option value="fi">Suomalainen</option>
+                    <option value="de">Deutsch</option>
+                    <option value="nl">Jip &amp; Janneke</option>
+                    <option value="zh">中文</option>
                   </select>
                 </div>
                 <div class="formline">
@@ -159,6 +162,7 @@ leave empty if you want a single flight">
                     <option value="fr">.fr</option>
                     <option value="nl">.nl</option>
                     <option value="ae">.ae</option>
+                    <option value="de">.de</option>
                     <option value="fi">.fi</option>
                     <option value="gr">.gr</option>
                     <option value="co.uk">.co.uk</option>
@@ -187,7 +191,7 @@ leave empty if you want a single flight">
                     <option value="klm">KL</option>
                   </select>
                 </div>
-              </fieldset>
+            </fieldset>
         </form>
     <script>
 
@@ -195,7 +199,7 @@ leave empty if you want a single flight">
       if (pParams.returnDate && pParams.returnDate.length > 0) {
         return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + // base
           "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival +         // departure connection
-          ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure +                             // return connectdion
+          ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure +                             // return connection
           ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 +            // pax
           "&activeConnection=0"; // dunno
       } else {
@@ -234,10 +238,6 @@ leave empty if you want a single flight">
       newWindow: false
     };
     var LOCALSTORAGE_KEY = 'thing';
-
-    console.log(
-      buildSearchQuery(gModel)
-    );
 
     function persistState(pKey, pState){
       if (typeof localStorage !== 'undefined'){
@@ -279,32 +279,36 @@ leave empty if you want a single flight">
       document.getElementById('childCount').setAttribute("value", gModel.childCount);
       document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
       document.getElementById('newWindow').checked = gModel.newWindow;
-      document.getElementById('environment').setAttribute("value", gModel.environment);
-      document.getElementById('brand').setAttribute("value", gModel.brand);
-      document.getElementById('CCTLD').setAttribute("value", gModel.CCTLD);
-      document.getElementById('language').setAttribute("value", gModel.language);
+      document.getElementById('environment').value = gModel.environment;
+      document.getElementById('brand').value = gModel.brand;
+      document.getElementById('CCTLD').value = gModel.CCTLD;
+      document.getElementById('language').value = gModel.language;
       setBrand(gModel.brand);
       console.table ? console.table(gModel): console.log(gModel);
     }
 
-    document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
-    document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
-    document.getElementById('departure').addEventListener("change", updateViewModel, false);
-    document.getElementById('arrival').addEventListener("change", updateViewModel, false);
-    document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
-    document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
-    document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
-    document.getElementById('childCount').addEventListener("change", updateViewModel, false);
-    document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
-    document.getElementById('newWindow').addEventListener("change", updateViewModel, false);
-    document.getElementById('environment').addEventListener("change", updateViewModel, false);
-    document.getElementById('brand').addEventListener("change", updateViewModel, false);
-    document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
-    document.getElementById('language').addEventListener("change", updateViewModel, false);
+    function init() {
+      document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
+      document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
+      document.getElementById('departure').addEventListener("change", updateViewModel, false);
+      document.getElementById('arrival').addEventListener("change", updateViewModel, false);
+      document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
+      document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
+      document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
+      document.getElementById('childCount').addEventListener("change", updateViewModel, false);
+      document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
+      document.getElementById('newWindow').addEventListener("change", updateViewModel, false);
+      document.getElementById('environment').addEventListener("change", updateViewModel, false);
+      document.getElementById('brand').addEventListener("change", updateViewModel, false);
+      document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
+      document.getElementById('language').addEventListener("change", updateViewModel, false);
 
-    gModel = getState(LOCALSTORAGE_KEY, gModel);
+      gModel = getState(LOCALSTORAGE_KEY, gModel);
 
-    showModel();
+      showModel();
+    }
+
+    init();
 
     </script>
 </body>
