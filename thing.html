@@ -104,35 +104,38 @@
             <fieldset aria-label="parameters">
                 <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
                 <div class="formline">
-                <label data-label="departure" class="tr" for="departure">Départ de</label>
-                <input type="text" pattern="[A-Z]{3}" id="departure" title="3 letter IATA airport code">
+                    <label data-label="departure" class="tr" for="departure">Départ de</label>
+                    <input type="text" pattern="[A-Z]{3}" id="departure" title="3 letter IATA airport code">
                 </div>
                 <div class="formline">
-                <label data-label="arrival" class="tr" for="arrival">Arrive à</label>
-                <input type="text" pattern="[A-Z]{3}" id="arrival" title="3 letter IATA airport code">
+                    <label data-label="arrival" class="tr" for="arrival">Arrive à</label>
+                    <input type="text" pattern="[A-Z]{3}" id="arrival" title="3 letter IATA airport code">
                 </div>
                 <div class="formline">
-                <label data-label="departureDate" class="tr" for="departureDate">Date de departure</label>
-                <input type="text" pattern="[0-9]{8}" id="departureDate" title="a departure date">
+                    <label data-label="departureDate" class="tr" for="departureDate">Date de departure</label>
+                    <input type="text" pattern="[0-9]{8}" id="departureDate" title="a departure date">
                 </div>
                 <div class="formline">
-                <label data-label="returnDate" class="tr" for="returnDate">Date de retour</label>
-                <input type="text" pattern="[0-9]{8}" id="returnDate" title="a return date
+                    <label data-label="returnDate" class="tr" for="returnDate">Date de retour</label>
+                    <input type="text" pattern="[0-9]{8}" id="returnDate" title="a return date
 leave empty if you want a single flight">
                 </div>
                 <div class="formline">
-                <label data-label="adultCount" class="tr" for="adultCount">Adultes</label>
-                <input type="number" pattern="[1-9]{1}" id="adultCount" title="number of adults in the party">
+                    <label data-label="adultCount" class="tr" for="adultCount">Adultes</label>
+                    <input type="number" pattern="[1-9]{1}" id="adultCount" title="number of adults in the party">
                 </div>
                 <div class="formline">
-                <label data-label="childCount" class="tr" for="childCount">Enfants</label>
-                <input type="number" pattern="[1-9]{1}" id="childCount" title="number of children in the party">
+                    <label data-label="youngAdultCount" class="tr" for="youngAdultCount">Jeunes</label>
+                    <input type="number" pattern="[1-9]{1}" id="youngAdultCount" title="number of young adults in the party">
                 </div>
                 <div class="formline">
-                <label data-label="infantCount" class="tr" for="infantCount">Bébés</label>
-                <input type="number" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
+                    <label data-label="childCount" class="tr" for="childCount">Enfants</label>
+                    <input type="number" pattern="[1-9]{1}" id="childCount" title="number of children in the party">
                 </div>
-
+                <div class="formline">
+                    <label data-label="infantCount" class="tr" for="infantCount">Bébés</label>
+                    <input type="number" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
+                </div>
                 <div class="formline">
                   <input type="checkbox" id="newWindow">
                   <label data-label="newWindow" class="tr" for="newWindow">Fenêtre nouvelle</label>
@@ -150,6 +153,7 @@ leave empty if you want a single flight">
                     <option value="en">English</option>
                     <option value="fr">Français</option>
                     <option value="nl">Nederlands</option>
+                    <option value="es">Español</option>
                     <option value="fi">Suomalainen</option>
                     <option value="de">Deutsch</option>
                     <option value="nl">Jip &amp; Janneke</option>
@@ -162,10 +166,24 @@ leave empty if you want a single flight">
                     <option value="fr">.fr</option>
                     <option value="nl">.nl</option>
                     <option value="ae">.ae</option>
+                    <option value="ar">.ar</option>
+                    <option value="co.uk">.co.uk</option>
                     <option value="de">.de</option>
+                    <option value="do">.do</option>
                     <option value="fi">.fi</option>
                     <option value="gr">.gr</option>
-                    <option value="co.uk">.co.uk</option>
+                    <option value="lk">.lk</option>
+                    <option value="kw">.kw</option>
+                    <option value="sx">.sx</option>
+                    <option value="nz">.nz</option>
+                    <option value="ir">.ir</option>
+                    <option value="id">.id</option>
+                    <option value="jo">.jo</option>
+                    <option value="mu">.mu</option>
+                    <option value="my">.my</option>
+                    <option value="rs">.rs</option>
+                    <option value="uy">.uy</option>
+                    <option value="vn">.vn</option>
                     <option value="com">.com</option>
                   </select>
                 </div>
@@ -200,12 +218,12 @@ leave empty if you want a single flight">
         return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + // base
           "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival +         // departure connection
           ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure +                             // return connection
-          ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 +            // pax
+          ":A&pax=" + pParams.adultCount + ":" + (pParams.youngAdultCount||"0") + ":" + pParams.childCount + ":" + pParams.infantCount  + // pax
           "&activeConnection=0"; // dunno
       } else {
         return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + // base
           "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival +         // departure connection
-          ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 +            // pax
+          ":A&pax=" + pParams.adultCount + ":" + (pParams.youngAdultCount||"0") + ":" + pParams.childCount + ":" + pParams.infantCount  + // pax
           "&activeConnection=0"; // dunno
       }
 
@@ -233,6 +251,7 @@ leave empty if you want a single flight">
       departureDate: '20180924',
       returnDate: '20181006',
       adultCount: 1,
+      youngAdultCount: 0,
       childCount: 0,
       infantCount: 0,
       newWindow: false
@@ -276,6 +295,7 @@ leave empty if you want a single flight">
       document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
       document.getElementById('returnDate').setAttribute("value", gModel.returnDate);
       document.getElementById('adultCount').setAttribute("value", gModel.adultCount);
+      document.getElementById('youngAdultCount').setAttribute("value", gModel.youngAdultCount);
       document.getElementById('childCount').setAttribute("value", gModel.childCount);
       document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
       document.getElementById('newWindow').checked = gModel.newWindow;
@@ -295,6 +315,7 @@ leave empty if you want a single flight">
       document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
       document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
       document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
+      document.getElementById('youngAdultCount').addEventListener("change", updateViewModel, false);
       document.getElementById('childCount').addEventListener("change", updateViewModel, false);
       document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
       document.getElementById('newWindow').addEventListener("change", updateViewModel, false);
