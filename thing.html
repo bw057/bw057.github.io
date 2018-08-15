@@ -137,6 +137,16 @@ leave empty if you want a single flight">
                     <input type="number" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
                 </div>
                 <div class="formline">
+                    <label data-label="cabinClass" class="tr" for="cabinClass">Cabine</label>
+                    <input type="text" pattern="[A-Z]+" id="cabinClass" title="The cabin class">
+                    <select id="cabinClass">
+                      <option value="ECONOMY">Economy</option>
+                      <option value="PREMIUM">Premium economy</option>
+                      <option value="BUSINESS">Business</option>
+                      <option value="FIRST">La Première</option>
+                    </select>
+                </div>
+                <div class="formline">
                   <input type="checkbox" id="newWindow">
                   <label data-label="newWindow" class="tr" for="newWindow">Fenêtre nouvelle</label>
                 </div>
@@ -219,11 +229,13 @@ leave empty if you want a single flight">
           "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival +         // departure connection
           ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure +                             // return connection
           ":A&pax=" + pParams.adultCount + ":" + (pParams.youngAdultCount||"0") + ":" + pParams.childCount + ":" + pParams.infantCount  + // pax
+          "&cabinClass=" + pParams.cabinClass + // der Kabine
           "&activeConnection=0"; // dunno
       } else {
         return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + // base
           "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival +         // departure connection
           ":A&pax=" + pParams.adultCount + ":" + (pParams.youngAdultCount||"0") + ":" + pParams.childCount + ":" + pParams.infantCount  + // pax
+          "&cabinClass=" + pParams.cabinClass + // der Kabine
           "&activeConnection=0"; // dunno
       }
 
@@ -254,6 +266,7 @@ leave empty if you want a single flight">
       youngAdultCount: 0,
       childCount: 0,
       infantCount: 0,
+      cabinClass: 'ECONOMY',
       newWindow: false
     };
     var LOCALSTORAGE_KEY = 'thing';
@@ -298,6 +311,7 @@ leave empty if you want a single flight">
       document.getElementById('youngAdultCount').setAttribute("value", gModel.youngAdultCount);
       document.getElementById('childCount').setAttribute("value", gModel.childCount);
       document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
+      document.getElementById('cabinClass').value = gModel.cabinClass;
       document.getElementById('newWindow').checked = gModel.newWindow;
       document.getElementById('environment').value = gModel.environment;
       document.getElementById('brand').value = gModel.brand;
@@ -318,6 +332,7 @@ leave empty if you want a single flight">
       document.getElementById('youngAdultCount').addEventListener("change", updateViewModel, false);
       document.getElementById('childCount').addEventListener("change", updateViewModel, false);
       document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
+      document.getElementById('cabinClass').addEventListener("change", updateViewModel, false);
       document.getElementById('newWindow').addEventListener("change", updateViewModel, false);
       document.getElementById('environment').addEventListener("change", updateViewModel, false);
       document.getElementById('brand').addEventListener("change", updateViewModel, false);
