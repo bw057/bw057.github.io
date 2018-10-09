@@ -167,13 +167,7 @@
       </select>
     </div>
     <div class="formline">
-      <label class="tr" data-label="page" for="page">Page</label>
-      <select id="page">
-        <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==" selected="true">direct</option>
-      </select>
-    </div>
-    <div class="formline">
-      <label class="tr" data-label="featurebranch" for="featurebranch">Page</label>
+      <label class="tr" data-label="featurebranch" for="featurebranch">Branche de fonc<sup>té</sup></label>
       <input type="text" inputmode="numeric" pattern="^/.+" id="featurebranch" title="Start the featurebranch with a '/', e.g. '/cool-feature'" value="">
     </div>
   </fieldset>
@@ -185,7 +179,6 @@ var FORM_FIELDS = [
   "cctld",
   "environment",
   "brand",
-  "page",
   "featurebranch",
   "ticketnumber",
   "flightnumber",
@@ -246,18 +239,6 @@ var LABELS = [
     fr: "Marque",
     en: "Brand",
     nl: "Merk"
-  },
-  {
-    id: "page",
-    fr: "Page",
-    en: "Page",
-    nl: "Pagina"
-  },
-  {
-    id: "page.direct",
-    fr: "direct",
-    en: "direct",
-    nl: "direct"
   },
   {
     id: "featurebranch",
@@ -329,7 +310,7 @@ function addFormChangeListeners(){
 function setActionURL(pEvent){
   window.daform.action =
     window.atob(
-      document.getElementById('page').value
+      "aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg=="
     )
     .replace("{{environment}}", document.getElementById('environment').value)
     .replace("{{brand}}", document.getElementById('brand').value)
@@ -350,14 +331,12 @@ function automaticUpperCase(pEvent) {
   pEvent.target.value = pEvent.target.value.toUpperCase();
 }
 
-
 function main(){
   fillTheForm();
   setActionURL();
   translate(document.getElementById('language').value);
   setBrand(document.getElementById('brand').value);
 
-  document.getElementById('page').addEventListener("change", setActionURL, false);
   document.getElementById('environment').addEventListener("change", setActionURL, false);
   document.getElementById('brand').addEventListener("change", setActionURL, false);
   document.getElementById('cctld').addEventListener("change", setActionURL, false);
